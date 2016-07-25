@@ -3,15 +3,9 @@
 class Widget
 {
 public:
-    
-    template <typename T>
-    static void foo(T && param)
-    {
-        std::cout << __PRETTY_FUNCTION__ << " " << typeid(param).name() << std::endl;
-    }
     Widget()
     {
-//        std::cout << __PRETTY_FUNCTION__ << std::endl;
+        std::cout << __PRETTY_FUNCTION__ << std::endl;
     }
     
     Widget(const Widget & widget)
@@ -106,7 +100,7 @@ int main(int argc, const char * argv[]) {
     //rvalue-объект
     {
         Widget lvo = complexMakeWidget();
-        Widget const & lvo_lvl = complexMakeWidget();// lvalue-ссылка может быть инициализирована rvalue-объектом, если только она является  константной
+        Widget const & lvo_lvl = complexMakeWidget();// lvalue-ссылка может быть инициализирована rvalue-объектом, если только она не является константной
         Widget && lvo_rvl = complexMakeWidget();
     }
     {
@@ -125,7 +119,7 @@ int main(int argc, const char * argv[]) {
     //rvalue-объект типа rvalue-ссылка
     {
         Widget lvo = makeWidgetAndReturnRvalueLink();
-        Widget const & lvo_lvl = makeWidgetAndReturnRvalueLink(); // lvalue-ссылка может быть инициализирована rvalue-объектом, если только она является  константной
+        Widget const & lvo_lvl = makeWidgetAndReturnRvalueLink(); // lvalue-ссылка может быть инициализирована rvalue-объектом, если только она не является константной
         Widget && lvo_rvl = makeWidgetAndReturnRvalueLink();
     }
     f(makeWidgetAndReturnRvalueLink());
